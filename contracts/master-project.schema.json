@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SagaVibes Master Project File",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project_id", "version", "status", "vision", "prd", "brand", "architecture", "data_model", "context", "task_graph", "artifacts", "costs", "audit"],
+  "properties": {
+    "project_id": {"type": "string", "format": "uuid"},
+    "version": {"type": "integer", "minimum": 1},
+    "etag": {"type": "string"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "status": {"type": "object"},
+    "vision": {"type": "object"},
+    "prd": {"type": "object"},
+    "brand": {"type": "object"},
+    "architecture": {
+      "type": "object",
+      "required": ["route", "services", "integrations", "decisions"],
+      "properties": {
+        "route": {"enum": ["rapid", "hybrid", "enterprise"]},
+        "services": {"type": "array", "items": {"type": "object"}},
+        "integrations": {"type": "array", "items": {"type": "object"}},
+        "decisions": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "data_model": {"type": "object"},
+    "delivery": {"type": "object"},
+    "context": {
+      "type": "object",
+      "required": ["canonical_facts", "open_questions", "research", "summaries"],
+      "properties": {
+        "canonical_facts": {"type": "array", "items": {"type": "object"}},
+        "open_questions": {"type": "array", "items": {"type": "object"}},
+        "research": {"type": "array", "items": {"type": "object"}},
+        "summaries": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "agents": {"type": "object"},
+    "task_graph": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": {"type": "array", "items": {"type": "object"}},
+        "edges": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "artifacts": {"type": "array", "items": {"type": "object"}},
+    "costs": {"type": "object"},
+    "audit": {"type": "object"}
+  }
+}
