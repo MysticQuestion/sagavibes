@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -29,3 +29,32 @@ class RouteDecision(BaseModel):
     recommended_lane: list[str]
     requires_human_approval: bool = True
     policy_version: Literal["2026-07-07.v1"] = "2026-07-07.v1"
+
+
+class StudioSelection(BaseModel):
+    page_id: str | None = None
+    node_id: str | None = None
+
+
+class StudioCommand(BaseModel):
+    prompt: str = Field(min_length=2, max_length=4_000)
+    site_version: int = Field(default=1, ge=1)
+    selection: StudioSelection = Field(default_factory=StudioSelection)
+
+
+class SitePatchOperation(BaseModel):
+    op: Literal["set", "append_node", "remove_node"]
+    path: str | None = None
+    value: Any = None
+    page_id: str | None = None
+    node: dict[str, Any] | None = None
+    node_id: str | None = None
+
+
+class StudioPlan(BaseModel):
+    agent: Literal["conductor", "brand", "visual", "copy", "ux", "seo"]
+    intent: str
+    summary: str
+    operations: list[SitePatchOperation]
+    requires_human_approval: bool = True
+    base_site_version: int
