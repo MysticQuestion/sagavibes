@@ -8,6 +8,23 @@ The platform is designed around a provider-agnostic orchestration core, a canoni
 
 AI tools do not share mutable memory directly. SagaVibes maintains a canonical project state and gives each agent a scoped context bundle. Agents return structured patch proposals, artifacts, code changes, and evidence; the orchestrator validates and merges those outputs.
 
+## SagaVibes Studio
+
+Studio is the client-facing visual development environment. Website projects are represented as a canonical **Site Graph** inside the broader Master Project File so that direct visual edits and agent-generated edits operate on the same state model.
+
+The foundation Studio includes:
+
+- selectable visual canvas
+- component and page navigation
+- desktop, tablet, and mobile previews
+- inspector-based content and appearance editing
+- local undo history
+- scoped natural-language commands
+- inspectable Site Graph patch proposals with explicit apply/discard approval
+- a preserved project-routing workspace
+
+The first command planner is deterministic by design. It proves the editor/agent contract without pretending that model-backed specialists are already connected. See `docs/STUDIO_ARCHITECTURE.md`.
+
 ## Planned lanes
 
 - **Rapid lane** — UI-first scaffolding and prototypes through supported builder integrations and GitHub handoff.
@@ -19,14 +36,12 @@ AI tools do not share mutable memory directly. SagaVibes maintains a canonical p
 ```text
 apps/
   api/        FastAPI orchestration API
-  web/        Vite + React control plane
+  web/        Vite + React control plane and Studio
 contracts/    JSON Schemas and inter-agent contracts
 docs/         Architecture and operating model
 ```
 
 ## Local development
-
-The foundation branch introduces the first routing API, the web intake screen, the Master Project File contract, and the Software Architecture Document.
 
 ### API
 
