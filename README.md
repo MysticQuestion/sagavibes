@@ -20,7 +20,7 @@ The repository currently contains:
 - a Master Project File JSON Schema;
 - software architecture and integration-strategy documentation.
 
-## SagaVibes Studio
+## Saga Vibes Studio
 
 Studio is the client-facing visual development environment. Website projects are represented as a canonical **Site Graph** inside the broader Master Project File so that direct visual edits and agent-generated edits operate on the same state model.
 
