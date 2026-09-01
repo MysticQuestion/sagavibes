@@ -12,9 +12,9 @@ export default function App() {
     <main className="page-shell">
       <header className="masthead app-masthead">
         <div>
-          <p className="eyebrow">SAGA SOLUTIONS / CREATIVE OPERATING SYSTEM</p>
+          <p className="eyebrow">SAGA SYSTEMS / PRODUCTION ENVIRONMENT</p>
           <div className="brand-lockup">
-            <h1>SagaVibes</h1>
+            <h1>Saga Vibes</h1>
             <span>Studio · foundation</span>
           </div>
           <p className="lede">
@@ -23,7 +23,7 @@ export default function App() {
           </p>
         </div>
 
-        <nav className="product-nav" aria-label="SagaVibes workspace">
+        <nav className="product-nav" aria-label="Saga Vibes workspace">
           <button
             type="button"
             className={view === 'studio' ? 'active' : ''}
