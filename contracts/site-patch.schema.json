@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sagavibes.local/contracts/site-patch.schema.json",
+  "title": "SagaVibes Site Patch Proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proposal_id",
+    "project_id",
+    "site_id",
+    "base_site_version",
+    "agent",
+    "operations",
+    "requires_human_approval"
+  ],
+  "properties": {
+    "proposal_id": { "type": "string" },
+    "project_id": { "type": "string" },
+    "site_id": { "type": "string" },
+    "base_site_version": { "type": "integer", "minimum": 1 },
+    "agent": { "type": "string" },
+    "summary": { "type": "string" },
+    "requires_human_approval": { "type": "boolean" },
+    "operations": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["op", "path", "value"],
+            "properties": {
+              "op": { "const": "set" },
+              "path": { "type": "string", "pattern": "^/" },
+              "value": {}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["op", "page_id", "node"],
+            "properties": {
+              "op": { "const": "append_node" },
+              "page_id": { "type": "string" },
+              "node": { "type": "object" }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["op", "page_id", "node_id"],
+            "properties": {
+              "op": { "const": "remove_node" },
+              "page_id": { "type": "string" },
+              "node_id": { "type": "string" }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

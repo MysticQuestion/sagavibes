@@ -24,6 +24,7 @@
       }
     },
     "data_model": {"type": "object"},
+    "site_graph": {"$ref": "./site-graph.schema.json"},
     "delivery": {"type": "object"},
     "context": {
       "type": "object",
